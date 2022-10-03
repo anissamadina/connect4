@@ -34,6 +34,7 @@ class Grid:
 
     def win(self, line: int, column: int) -> bool:
         adjacent = 0
+        jetton = 0
         color = self.grid[line][column]
         # Horizontal
         for cell in self.grid[line]:
@@ -42,36 +43,26 @@ class Grid:
                 if adjacent == 4:
                     return True
             else:
-                adjacent=0
+                adjacent = 0
         # TODO: Vertical
-        for cell in range(line):
-            for com in range(column):
-                if self.grid[cell][com]== color:
-                    adjacent += 1
-                    if adjacent == 4:
-                        return True
+        for cell in range(6):
+            var = self.grid[cell][column]
+            if var == color:
+                jetton += 1
+                if jetton == 4:
+                    return True
+
         # TODO: Diagonal
-        for cell in range(line):
-            for com in range(column):
-                if self.grid[cell][com] == color:
-
-                    if cell-1 != color or cell+1 != color:
-                        if com-1 == color or com+1 == color :
-                            adjacent+=1
-                        else :
-                            adjacent=0
-                    if com-1 != color or com+1 != color:
-                        if cell-1 == color or cell+1 == color :
-                            adjacent+=1
-                        else :
-                            adjacent=0
-
-                    if adjacent==4 :
+        for i in range(6):
+            for j in range(7):
+                case=self.grid[i][j]
+                if case==color:
+                    jetton+=1
+                    if jetton==4 :
                         return True
                     else :
-                        adjacent=0
+                        jetton=0
         return False
-
 
     def tie(self):
         # TODO
