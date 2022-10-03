@@ -55,13 +55,13 @@ class Grid:
         # TODO: Diagonal
         for i in range(6):
             for j in range(7):
-                case=self.grid[i][j]
-                if case==color:
-                    jetton+=1
-                    if jetton==4 :
+                case = self.grid[i][j]
+                if case == color:
+                    jetton += 1
+                    if jetton == 4:
                         return True
-                    else :
-                        jetton=0
+                    else:
+                        jetton = 0
         return False
 
     def tie(self):
