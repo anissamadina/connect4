@@ -55,13 +55,29 @@ class Grid:
                 adjacent = 0
 
         # TODO: Vertical
+        for cell in range(6):
+            var = self.grid[cell][column]
+            if var == color:
+                jetton += 1
+                if jetton == 4:
+                    return True
         # TODO: Diagonal
+        for cell in range(5):
+            for j in range(6):
+                case = self.grid[cell][j]
+                if case == color:
+                    jetton += 1
+                    if jetton == 4:
+                        return True
+                    else:
+                        jetton = 0
         return False
 
     def tie(self) -> bool:
-        """Check if the grid is full."""
-        # TODO
-        return False
+        if win == False:
+            return True
+        else:
+            return False
 
 
 class Player:
