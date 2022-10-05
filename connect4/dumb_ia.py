@@ -1,6 +1,8 @@
-from .game import Player
+from .game import Grid, Player
 
 
 class DumbIA(Player):
-    def play(self, grid) -> int:
+    """IA which play on the column of the first possible empty cell it finds."""
+
+    def play(self, grid: Grid) -> int:
         ...
