@@ -43,12 +43,16 @@ class Grid:
     def win(self, line: int, column: int) -> bool:
         """Check if the Cell at "line" / "column" is part of 4 Cells from the same
         player in a horizontal / vertical / diagonal line."""
+
         adjacent = 0
+        jetton=0
         color = self.grid[line][column]
         # Horizontal
         for cell in self.grid[line]:
+            #print(cell)
             if cell == color:
                 adjacent += 1
+                #print(adjacent)
                 if adjacent == 4:
                     return True
             else:
@@ -56,28 +60,36 @@ class Grid:
 
         # TODO: Vertical
         for cell in range(6):
+            print(cell)
             var = self.grid[cell][column]
             if var == color:
                 jetton += 1
+                print(jetton)
                 if jetton == 4:
                     return True
         # TODO: Diagonal
-        for cell in range(5):
-            for j in range(6):
+        """for cell in range(6):
+            for j in range(7):
                 case = self.grid[cell][j]
                 if case == color:
                     jetton += 1
                     if jetton == 4:
                         return True
                     else:
-                        jetton = 0
+                        jetton = 0"""
         return False
 
     def tie(self) -> bool:
-        if win == False:
-            return True
-        else:
-            return False
+        print('hello')
+        for i in range(6):
+            for j in range(7):
+                g=self.grid[i][j]
+                if (g!=Cell.EMPTY):
+                    print('s')
+                    if (self.win(i,j))==False:
+                        return True
+                    else:
+                        return False
 
 
 class Player:
