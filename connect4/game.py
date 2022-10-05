@@ -68,15 +68,23 @@ class Grid:
                 if jetton == 4:
                     return True
         # TODO: Diagonal
-        """for cell in range(6):
+        for i in range(6):
             for j in range(7):
-                case = self.grid[cell][j]
+                case = self.grid[i][j]
                 if case == color:
                     jetton += 1
-                    if jetton == 4:
+                    if self.grid[i+1][j+1] == color:
+                        jetton += 1
+                    elif self.grid[i+1][j-1] == color:
+                        jetton += 1
+                    if self.grid[i-1][j+1] == color:
+                        jetton += 1
+                    elif self.grid[i-1][j-1] == color:
+                        jetton += 1
+                    elif jetton == 4:
                         return True
                     else:
-                        jetton = 0"""
+                        jetton = 0
         return False
 
     def tie(self) -> bool:
