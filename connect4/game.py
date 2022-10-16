@@ -45,7 +45,7 @@ class Grid:
         player in a horizontal / vertical / diagonal line."""
 
         adjacent = 0
-        jetton=0
+        jeton = 0
         color = self.grid[line][column]
         # Horizontal
         for cell in self.grid[line]:
@@ -60,44 +60,57 @@ class Grid:
 
         # TODO: Vertical
         for cell in range(6):
-            print(cell)
+            #print(cell)
             var = self.grid[cell][column]
             if var == color:
-                jetton += 1
-                print(jetton)
-                if jetton == 4:
+                jeton += 1
+                print(jeton)
+                if jeton == 4:
+                    print(self.grid)
                     return True
+
         # TODO: Diagonal
-        for i in range(6):
-            for j in range(7):
-                case = self.grid[i][j]
-                if case == color:
-                    jetton += 1
-                    if self.grid[i+1][j+1] == color:
-                        jetton += 1
-                    elif self.grid[i+1][j-1] == color:
-                        jetton += 1
-                    if self.grid[i-1][j+1] == color:
-                        jetton += 1
-                    elif self.grid[i-1][j-1] == color:
-                        jetton += 1
-                    elif jetton == 4:
-                        return True
-                    else:
-                        jetton = 0
+        jeton = 0
+        # First direction upper right
+        for n in range(4):
+            if line + n < 6 and column + n < 7 and self.grid[line + n][column + n] == color:
+                jeton += 1
+            else:
+                break
+            if jeton == 4:
+                return True
+
+        # Check the other diagonal, in the upper left direction
+        jeton = 0
+        for n in range(4):
+            if line + n < 6 and column - n > -1 and self.grid[line + n][column - n] == color:
+                jeton += 1
+            else:
+                break
+            if jeton == 4:
+                return True
         return False
 
     def tie(self) -> bool:
-        print('hello')
-        for i in range(6):
-            for j in range(7):
-                g=self.grid[i][j]
-                if (g!=Cell.EMPTY):
-                    print('s')
-                    if (self.win(i,j))==False:
-                        return True
-                    else:
-                        return False
+        """jeton = 0
+        for j in range(7):
+            compte = self.grid[5][j]
+            if compte == Cell.A or compte == Cell.B:
+                jeton += 1
+            else:
+                jeton = 0
+            if jeton == 6:
+                return True
+            else:
+                return False"""
+        for line in range(self.lines):
+            for col in range(self.columns):
+                if self.grid[line][col] == Cell.EMPTY:
+                    return False
+                if self.win(line, col):
+                    return False
+        return True
+
 
 
 class Player:

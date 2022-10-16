@@ -6,4 +6,7 @@ class ConsolePlayer(Player):
     keyboard."""
 
     def play(self, grid: Grid) -> int:
-        ...
+        print(grid)
+        variable=int(input("Jouez :"))
+        return variable
+
