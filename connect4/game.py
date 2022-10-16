@@ -72,44 +72,76 @@ class Grid:
         # TODO: Diagonal
         jeton = 0
         # First direction upper right
-        for n in range(4):
+        for n in range(5):
             if line + n < 6 and column + n < 7 and self.grid[line + n][column + n] == color:
                 jeton += 1
+                print("jeton1 =", jeton)
             else:
+                jeton = 0
                 break
             if jeton == 4:
                 return True
-
+        print("jetonnn",jeton)
+        # Second direction down left, but still in the same diagonal
+        for n in range(5):
+            if line - n > -1 and column - n > -1 and self.grid[line - n][column - n] == color:
+                jeton += 1
+                print("jeton2 =", jeton)
+                print("n2 =", n)
+                print("line-n2 =", line - n)
+                print("column+n2 =", column + n)
+                print("line2 =", line)
+                print("column2 =", column)
+            else:
+                jeton = 0
+                break
+            if jeton == 4:
+                return True
         # Check the other diagonal, in the upper left direction
         jeton = 0
-        for n in range(4):
+        for n in range(5):
             if line + n < 6 and column - n > -1 and self.grid[line + n][column - n] == color:
                 jeton += 1
+                print("jeton3 =", jeton)
+                print("n3 =", n)
+                print("line-n3 =", line - n)
+                print("column+n3 =", column + n)
+                print("line3 =", line)
+                print("column3 =", column)
             else:
+                jeton = 0
+                break
+            if jeton == 4:
+                return True
+             # Second direction down left, but still in the same diagonal
+        for n in range(5):
+            if line - n >-1 and column + n < 7 and self.grid[line - n][column + n] == color:
+                jeton += 1
+                print("jeton4 =", jeton)
+                print("n4 =", n)
+                print("line-n4 =", line-n)
+                print("column+n4 =", column+n)
+                print("line4 =", line)
+                print("column4 =", column)
+            else:
+                jeton = 0
                 break
             if jeton == 4:
                 return True
         return False
 
     def tie(self) -> bool:
-        """jeton = 0
-        for j in range(7):
-            compte = self.grid[5][j]
-            if compte == Cell.A or compte == Cell.B:
-                jeton += 1
+        i = 0
+        for cell2 in range(7):
+            var= self.grid[5][cell2]
+            if var == Cell.A or var == Cell.B:
+                i += 1
             else:
-                jeton = 0
-            if jeton == 6:
+                i = 0
+            if i == 6:
                 return True
-            else:
-                return False"""
-        for line in range(self.lines):
-            for col in range(self.columns):
-                if self.grid[line][col] == Cell.EMPTY:
-                    return False
-                if self.win(line, col):
-                    return False
-        return True
+            elif i == 0:
+                return False
 
 
 

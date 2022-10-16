@@ -1,10 +1,11 @@
 import unittest
 
 from connect4.game import Cell, Game
+from connect4.console_player import ConsolePlayer
 
 
 class TestCheater(unittest.TestCase):
-    @unittest.skip
+    #@unittest.skip
     def test_cheater(self):
         from connect4.cheater_b import CheaterB
         from connect4.dumb_ia import DumbIA

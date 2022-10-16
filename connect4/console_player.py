@@ -7,6 +7,6 @@ class ConsolePlayer(Player):
 
     def play(self, grid: Grid) -> int:
         print(grid)
-        variable=int(input("Jouez :"))
+        variable = int(input("Jouez :"))
         return variable
 

@@ -83,10 +83,11 @@ class TestGame(unittest.TestCase):
             game.play(ai_b, Cell.B)
         print(game.grid.__str__())
         self.assertTrue(game.grid.tie())
+        #c'est normale que le test de tie soit faux car A gagne en diagonale
 
         # @unittest.skip
 
-    """""@unittest.skip
+    """"@unittest.skip
     def test_tie(self):
         from connect4.dumb_ia import DumbIA
         ai_a = DumbIA()
