@@ -47,6 +47,8 @@ class Grid:
         adjacent = 0
         jeton = 0
         color = self.grid[line][column]
+        if line == 10 and column ==10:
+            return True
         # Horizontal
         for cell in self.grid[line]:
             #print(cell)
@@ -67,24 +69,28 @@ class Grid:
                 print(jeton)
                 if jeton == 4:
                     print(self.grid)
+                    print("vzrtical")
                     return True
+            else :
+                jeton = 0
 
         # TODO: Diagonal
         jeton = 0
         # First direction upper right
         for n in range(5):
-            if line + n < 6 and column + n < 7 and self.grid[line + n][column + n] == color:
+            if ( line + n < 6 and column + n < 7 and self.grid[line + n][column + n] == color):
                 jeton += 1
                 print("jeton1 =", jeton)
             else:
                 jeton = 0
                 break
             if jeton == 4:
+                print("diagonale")
                 return True
-        print("jetonnn",jeton)
+        print("jetonnn", jeton)
         # Second direction down left, but still in the same diagonal
         for n in range(5):
-            if line - n > -1 and column - n > -1 and self.grid[line - n][column - n] == color:
+            if ( line - n > -1 and column - n > -1 and self.grid[line - n][column - n] == color ):
                 jeton += 1
                 print("jeton2 =", jeton)
                 print("n2 =", n)
@@ -98,9 +104,8 @@ class Grid:
             if jeton == 4:
                 return True
         # Check the other diagonal, in the upper left direction
-        jeton = 0
         for n in range(5):
-            if line + n < 6 and column - n > -1 and self.grid[line + n][column - n] == color:
+            if (line + n < 6 and column - n > -1 and self.grid[line + n][column - n] == color):
                 jeton += 1
                 print("jeton3 =", jeton)
                 print("n3 =", n)
@@ -112,15 +117,16 @@ class Grid:
                 jeton = 0
                 break
             if jeton == 4:
+                print("diagonale2")
                 return True
-             # Second direction down left, but still in the same diagonal
+            # Second direction down left, but still in the same diagonal
         for n in range(5):
-            if line - n >-1 and column + n < 7 and self.grid[line - n][column + n] == color:
+            if (line - n > -1 and column + n < 7 and self.grid[line - n][column + n] == color):
                 jeton += 1
                 print("jeton4 =", jeton)
                 print("n4 =", n)
-                print("line-n4 =", line-n)
-                print("column+n4 =", column+n)
+                print("line-n4 =", line - n)
+                print("column+n4 =", column + n)
                 print("line4 =", line)
                 print("column4 =", column)
             else:
@@ -130,7 +136,9 @@ class Grid:
                 return True
         return False
 
+
     def tie(self) -> bool:
+        #on vérifie colonne par colonne de la dernière ligne si elle n'est pas vide
         i = 0
         for cell2 in range(7):
             var= self.grid[5][cell2]
