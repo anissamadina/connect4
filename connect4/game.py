@@ -47,8 +47,7 @@ class Grid:
         adjacent = 0
         jeton = 0
         color = self.grid[line][column]
-        if line == 10 and column ==10:
-            return True
+
         # Horizontal
         for cell in self.grid[line]:
             #print(cell)
@@ -71,7 +70,7 @@ class Grid:
                     print(self.grid)
                     print("vzrtical")
                     return True
-            else :
+            else:
                 jeton = 0
 
         # TODO: Diagonal

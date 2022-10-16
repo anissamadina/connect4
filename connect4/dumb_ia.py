@@ -18,5 +18,3 @@ class DumbIA(Player):
                     return j
 
 
-
-
